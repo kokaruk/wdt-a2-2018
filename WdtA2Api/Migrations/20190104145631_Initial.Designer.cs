@@ -8,6 +8,8 @@ using WdtA2Api.Models;
 
 namespace WdtA2Api.Migrations
 {
+    using WdtA2Api.Data;
+
     [DbContext(typeof(WdtA2ApiProductsContext))]
     [Migration("20190104145631_Initial")]
     partial class Initial

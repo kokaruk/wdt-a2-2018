@@ -1,57 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using WdtA2Api.Models;
-using WdtA2Api.Utils;
-
-namespace WdtA2Api
+﻿namespace WdtA2Api
 {
+    using System;
+    using System.Data.SqlClient;
+
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using WdtA2Api.Data;
+    using WdtA2Api.Models;
+    using WdtA2Api.Utils;
+
     public class Startup
     {
+        private readonly Lazy<string> _connectionString;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
-            _connectionString = new Lazy<string>(() =>
-            {
-                var secrets = Configuration.GetSection(nameof(DbSecrets)).Get<DbSecrets>();
-                var sqlString = new SqlConnectionStringBuilder(Configuration.GetConnectionString("wdtA2"))
-                {
-                    UserID = secrets.Uid,
-                    Password = secrets.Password
-                };
-                return sqlString.ConnectionString;
-            });
+            this.Configuration = configuration;
+            this._connectionString = new Lazy<string>(
+                () =>
+                    {
+                        var secrets = this.Configuration.GetSection(nameof(DbSecrets)).Get<DbSecrets>();
+                        var sqlString = new SqlConnectionStringBuilder(this.Configuration.GetConnectionString("wdtA2"))
+                                            {
+                                                UserID = secrets.Uid, Password = secrets.Password
+                                            };
+                        return sqlString.ConnectionString;
+                    });
         }
 
         public IConfiguration Configuration { get; }
 
-        private readonly Lazy<string> _connectionString;
-        private string ConnectionString => _connectionString.Value;
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            Console.WriteLine(ConnectionString);
-            services.AddDbContext<WdtA2ApiProductsContext>(options =>
-                    options.UseSqlServer(ConnectionString));
-            
-        }
-
-        // method to build connection string
-        
+        private string ConnectionString => this._connectionString.Value;
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -68,6 +52,13 @@ namespace WdtA2Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<WdtA2ApiProductsContext>(options => options.UseSqlServer(this.ConnectionString));
         }
     }
 }

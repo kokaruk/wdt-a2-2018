@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-
-namespace WdtA2Api.Models
+﻿namespace WdtA2Api.Data
 {
+    using Microsoft.EntityFrameworkCore;
+
     public class WdtA2ApiProductsContext : DbContext
     {
-        public WdtA2ApiProductsContext (DbContextOptions<WdtA2ApiProductsContext> options)
+        public WdtA2ApiProductsContext(DbContextOptions<WdtA2ApiProductsContext> options)
             : base(options)
         {
         }

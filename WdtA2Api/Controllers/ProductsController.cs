@@ -9,6 +9,8 @@ using WdtA2Api.Models;
 
 namespace WdtA2Api.Controllers
 {
+    using WdtA2Api.Data;
+
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase

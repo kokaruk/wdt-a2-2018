@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  wdta2api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - USER_SECRETS_ID=5511445b-2204-48b2-b326-1e2c021299c5
+    ports:
+      - "8080:80"
+    volumes:
+      - $APPDATA/Microsoft/UserSecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID

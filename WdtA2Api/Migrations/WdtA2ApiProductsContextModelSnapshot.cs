@@ -7,6 +7,8 @@ using WdtA2Api.Models;
 
 namespace WdtA2Api.Migrations
 {
+    using WdtA2Api.Data;
+
     [DbContext(typeof(WdtA2ApiProductsContext))]
     partial class WdtA2ApiProductsContextModelSnapshot : ModelSnapshot
     {
