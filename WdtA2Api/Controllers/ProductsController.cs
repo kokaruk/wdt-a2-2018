@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WdtA2Api.Data;
 using WdtA2Api.Models;
 
 namespace WdtA2Api.Controllers
 {
-    using WdtA2Api.Data;
-
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -47,7 +46,7 @@ namespace WdtA2Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(long id, Product product)
         {
-            if (id != product.Id)
+            if (id != product.ProductId)
             {
                 return BadRequest();
             }
@@ -80,7 +79,7 @@ namespace WdtA2Api.Controllers
             _context.Product.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
 
         // DELETE: api/Products/5
@@ -101,7 +100,7 @@ namespace WdtA2Api.Controllers
 
         private bool ProductExists(long id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _context.Product.Any(e => e.ProductId == id);
         }
     }
 }

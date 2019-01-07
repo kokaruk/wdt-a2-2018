@@ -13,17 +13,26 @@
     <Compile Remove="Migrations\20190104145127_Initial.Designer.cs" />
     <Compile Remove="Migrations\20190104145442_Initial.cs" />
     <Compile Remove="Migrations\20190104145442_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106092920_initial.cs" />
+    <Compile Remove="Migrations\20190106092920_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106093607_initial.cs" />
+    <Compile Remove="Migrations\20190106093607_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106094959_initial.cs" />
+    <Compile Remove="Migrations\20190106094959_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106100652_initial.cs" />
+    <Compile Remove="Migrations\20190106100652_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106105525_initial.cs" />
+    <Compile Remove="Migrations\20190106105525_initial.Designer.cs" />
+    <Compile Remove="Migrations\20190106110630_initial.cs" />
+    <Compile Remove="Migrations\20190106110630_initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
-﻿namespace WdtA2Api
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using WdtA2Api.Models;
+namespace WdtA2Api
 {
     using System;
     using System.Data.SqlClient;

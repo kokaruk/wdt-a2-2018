@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WdtA2Api.Data;
 
 namespace WdtA2Api.Migrations
 {
     [DbContext(typeof(WdtA2ApiProductsContext))]
-    partial class WdtA2ApiProductsContextModelSnapshot : ModelSnapshot
+    [Migration("20190106111153_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
